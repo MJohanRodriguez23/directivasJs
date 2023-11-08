@@ -1,16 +1,58 @@
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+
+let newTask = ref('')
+
+let taskList = ref([
+  {
+    name: 'Estudiar',
+    done: true
+  },
+
+  {
+    name: 'Comer',
+    done: false
+  },
+
+  {
+    name: 'Dormir',
+    done: false
+  }
+])
+
+function addTask() {
+  if (newTask.value.trim() === '') return
+  taskList.value.push({
+    name: newTask.value,
+    done: false
+  })
+  newTask.value = ''
+}
+
+function setdone(index) {
+  taskList.value[index].done = true
+}
+</script>
 
 <template>
   <div class="container">
     <h1>Lista de tareas</h1>
-    <p class="subtitle">Nueva tarea</p>
+    <p class="subtitle">{{ newTask }}</p>
     <div>
-      <div class="task">Tarea1 <span class="button">X</span></div>
-      <div class="task">Tarea2 <span class="button">X</span></div>
+      <div class="task" :class="{ done: task.done }" v-for="(task, index) in taskList" :key="index">
+        {{ task.name }}
+        <span @click="setdone(index)" class="button">X</span>
+      </div>
     </div>
 
-    <input type="text" placeholder="Escriba su tarea" />
-    <p class="help">Presiona Enter para agregar la tarea</p>
+    <input
+      v-model="newTask"
+      @keypress.enter="addTask"
+      type="text"
+      placeholder="Escriba su tarea"
+      maxlength="70"
+    />
+    <p v-show="newTask != ''" class="help">Presiona Enter para agregar la tarea</p>
   </div>
 </template>
 
@@ -86,5 +128,9 @@ input {
   opacity: 0.6;
   margin-top: 6px;
   margin-bottom: 4px;
+}
+
+.done {
+  text-decoration: line-through;
 }
 </style>
