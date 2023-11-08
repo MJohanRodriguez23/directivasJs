@@ -1,47 +1,90 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
+<script setup></script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+  <div class="container">
+    <h1>Lista de tareas</h1>
+    <p class="subtitle">Nueva tarea</p>
+    <div>
+      <div class="task">Tarea1 <span class="button">X</span></div>
+      <div class="task">Tarea2 <span class="button">X</span></div>
     </div>
-  </header>
 
-  <main>
-    <TheWelcome />
-  </main>
+    <input type="text" placeholder="Escriba su tarea" />
+    <p class="help">Presiona Enter para agregar la tarea</p>
+  </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
+.container {
+  color: whitesmoke;
+  background-color: #2182bf;
+  border-radius: 6px;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 6px 12px;
+  font-family: 'Montserrat', sans-serif;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+h1 {
+  text-transform: uppercase;
+  font-size: 18px;
+  text-align: center;
+  margin: 0;
+  margin-top: 12px;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+.subtitle {
+  font-size: 10px;
+  margin: 0;
+  margin-bottom: 16px;
+  text-align: center;
+  opacity: 0.6;
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+.task {
+  background-color: #52a5d9;
+  border-radius: 3px;
+  margin-bottom: 1px;
+  padding: 2px 2px 1px 6px;
+  display: flex;
+  justify-content: space-between;
+}
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.task:hover {
+  background-color: #89c2d9;
+  transition: background-color 0.3s linear;
+}
+
+.button {
+  background-color: #0d4373;
+  border-radius: 3px;
+  display: inline-block;
+  padding: 0 6px;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+input::placeholder {
+  opacity: 0.4;
+}
+
+input {
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  padding: 2px 6px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 10px;
+}
+
+.help {
+  font-size: 8px;
+  margin: 0;
+  opacity: 0.6;
+  margin-top: 6px;
+  margin-bottom: 4px;
 }
 </style>
