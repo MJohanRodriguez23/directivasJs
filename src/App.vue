@@ -6,16 +6,19 @@ let newTask = ref('')
 let taskList = ref([
   {
     name: 'Estudiar',
+    price: '3.00',
     done: true
   },
 
   {
     name: 'Comer',
+    price: '3.00',
     done: false
   },
 
   {
     name: 'Dormir',
+    price: '3.00',
     done: false
   }
 ])
@@ -52,6 +55,7 @@ function setdone(index) {
       placeholder="Escriba su tarea"
       maxlength="70"
     />
+
     <p v-show="newTask != ''" class="help">Presiona Enter para agregar la tarea</p>
   </div>
 </template>
@@ -134,3 +138,46 @@ input {
   text-decoration: line-through;
 }
 </style>
+
+<!-- 
+  (Formulario para agregar productos)
+
+<form @submit.prevent="agregarProducto">
+  <label for="nombre">Nombre del Producto:</label>
+  <input type="text" id="nombre" v-model="nuevoProducto.nombre" required>
+
+  <label for="precio">Precio:</label>
+  <input type="number" id="precio" v-model="nuevoProducto.precio" required>
+
+  <button type="submit">Agregar Producto</button>
+</form>
+
+ (Lista de productos) 
+<ul>
+  <li v-for="(producto, index) in productos" :key="index">
+      {{ producto.nombre }} - ${{ producto.precio }}
+      <button @click="eliminarProducto(index)">Eliminar</button>
+  </li>
+</ul>
+</div>
+
+##Funciones##
+
+agregarProducto() {
+                    // Validar que se haya ingresado un nombre y un precio válido
+                    if (this.nuevoProducto.nombre.trim() !== '' && this.nuevoProducto.precio > 0) {
+                        // Agregar el nuevo producto al array de productos
+                        this.productos.push({ ...this.nuevoProducto });
+                        // Limpiar el formulario después de agregar el producto
+                        this.nuevoProducto.nombre = '';
+                        this.nuevoProducto.precio = 0;
+                    }
+                },
+                eliminarProducto(index) {
+                    // Eliminar el producto del array
+                    this.productos.splice(index, 1);
+                }
+            }
+        });
+
+-->
